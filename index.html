@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>𝗦.𝗶𝗱/𝘀𝗲𝗯𝗲𝗿𝗮𝗽𝗮</title>
+<meta name="description" content="@feelthisray - Script HTML by feeldream.id">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<link rel="icon" href="https://feeldreams.github.io/main-icon.png" type="image/svg+xml" />
+<!-- CDN Resources -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+  :root {
+    --progress-color: #FFB6C1;
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    color: #fff;
+    font-family: 'Itim', cursive;
+    font-size: 14px;
+    text-shadow: 0 2px 2px rgba(0,0,0,.5);
+    overflow-x: hidden;
+  }
+
+  #bodyblur {
+    opacity: 0.4;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,.3);
+    transition: all 1s ease;
+    z-index: -1;
+  }
+
+  #wallpaper {
+    animation: zoomScale 8s infinite alternate;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @keyframes zoomScale {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .stiker {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.7);
+    border: 2.5px solid rgba(255,255,255,1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.75s ease;
+  }
+  .stiker img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-size: 19px;
+    margin-bottom: 20px;
+  }
+
+  h1 b {
+    font-weight: 700;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 220px;
+    height: 10px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid #fff;
+    outline: none;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 10px;
+    border-radius: 12px;
+    background: linear-gradient(to right, var(--progress-color) 0%, var(--progress-color) var(--progress, 50%), rgba(0,0,0,0.5) var(--progress, 50%), rgba(0,0,0,0.5) 100%);
+  }
+  input[type="range"]::-moz-range-track {
+    height: 10px;
+    border-radius: 12px;
+    background: linear-gradient(to right, var(--progress-color) 0%, var(--progress-color) var(--progress, 50%), rgba(0,0,0,0.5) var(--progress, 50%), rgba(0,0,0,0.5) 100%);
+    border: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    margin-top: -4px;
+    position: relative;
+    z-index: 1;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+
+  .range-wrapper {
+    position: relative;
+    width: 220px;
+    margin: 0 auto 20px;
+  }
+
+  .range-value {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    pointer-events: none;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .tombolLanjut a, #shareWA {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px 25px;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 30px;
+    border: 2px solid #fff;
+    background: rgba(0,0,0,0.3);
+    box-shadow: 0 7px 29px rgba(255,255,255,0.15);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  .tombolLanjut a:hover, #shareWA:hover {
+    background: #FFB6C1;
+    border-color: #ff7f9e;
+  }
+
+  textarea {
+    width: 220px;
+    height: 80px;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid #fff;
+    border-radius: 12px;
+    color: white;
+    padding: 8px;
+    resize: none;
+    font-family: 'Itim', cursive;
+    font-size: 14px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  input[type="text"] {
+    width: 220px;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid #fff;
+    border-radius: 12px;
+    color: white;
+    padding: 8px;
+    font-family: 'Itim', cursive;
+    font-size: 14px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  /* Pagination bullets */
+  .swiper-pagination {
+    margin-bottom: 25vh;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #fff !important;
+    opacity: 1 !important;
+  }
+  .swiper-pagination-bullet {
+    background-color: rgba(255,255,255,1) !important;
+  }
+</style>
+</head>
+<body>
+
+<div id="bodyblur">
+  <img id="wallpaper" src="https://feeldreams.github.io/wp3.jpeg" alt="Wallpaper" />
+</div>
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/panah.gif" alt="Stiker 1" /></div>
+      <h1>Alooo Kamuuu! 🫣<br><br><small style="font-weight:400; font-size: 18px;">Aku mau nanya nih 🤣</small><br><br>&gt;&gt;&gt;&gt;</h1>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/pusn.gif" alt="Stiker 2" /></div>
+      <h1>Seberapa <b>Baik</b> Aku? 🫢</h1>
+      <div class="range-wrapper">
+        <input type="range" id="baik" min="0" max="100" step="10" value="50" />
+        <span class="range-value" id="val-baik">50%</span>
+      </div>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/cubit.gif" alt="Stiker 3" /></div>
+      <h1>Seberapa <b>Random</b> Aku? 😆</h1>
+      <div class="range-wrapper">
+        <input type="range" id="random" min="0" max="100" step="10" value="50" />
+        <span class="range-value" id="val-random">50%</span>
+      </div>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/sinisini.gif" alt="Stiker 4" /></div>
+      <h1>Seberapa <b>Gaje</b> Aku? 😝</h1>
+      <div class="range-wrapper">
+        <input type="range" id="gaje" min="0" max="100" step="10" value="50" />
+        <span class="range-value" id="val-gaje">50%</span>
+      </div>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://feeldreams.github.io/smprt.gif" alt="Stiker 5" /></div>
+      <h1>Seberapa <b>Nakal</b> Aku? 🙄</h1>
+      <div class="range-wrapper">
+        <input type="range" id="nakal" min="0" max="100" step="10" value="50" />
+        <span class="range-value" id="val-nakal">50%</span>
+      </div>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/ciumin.gif" alt="Stiker 6" /></div>
+      <h1>Seberapa <b>Perhatian</b> Aku? 😋</h1>
+      <div class="range-wrapper">
+        <input type="range" id="perhatian" min="0" max="100" step="10" value="50" />
+        <span class="range-value" id="val-perhatian">50%</span>
+      </div>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/cilukba.gif" alt="Stiker 7" /></div>
+      <h1>Seberapa Kamu <b>Sayangg</b> Aku? 🫣</h1>
+      <div class="range-wrapper">
+        <input type="range" id="sayang" min="0" max="100" step="10" value="50" />
+        <span class="range-value" id="val-sayang">50%</span>
+      </div>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://feeldreams.github.io/mndkat.gif" alt="Stiker 8" /></div>
+      <h1>Panggilan Kamu ke Aku? 🫣</h1>
+      <input type="text" id="panggilan" placeholder="..." />
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="swiper-slide">
+      <div class="stiker"><img src="https://htmlku.com/0/panda/ciumpipi.gif" alt="Stiker 9" /></div>
+      <h1>Pesan Buat Aku? 🫣</h1>
+      <textarea id="pesan" placeholder="..."></textarea>
+      <div class="tombolLanjut">
+        <a onclick="swiper.slideNext()">Lanjut 👉🏻</a>
+      </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="swiper-slide" style="padding-top: 180px;">
+      <div class="stiker" style="margin-bottom: 20px;">
+        <img id="final-stiker" src="https://htmlku.com/0/panda/terlope2.gif" alt="Final Stiker" />
+      </div>
+      <div style="margin: 0 40px 0 55px; font-size: 17px; text-align: left;">
+        <b style="font-size: 20px;">Yeaayy!! 🥳</b><br><br>
+        Makasih udah mau jawab semuanyaa 😋😝<br>— ᯓᡣ𐭩<br><br>
+        Kirim hasil jawabannya ke <b style="color: red; background: white; border-radius: 12px; padding: 2px 8px;">WhatsApp</b> aku yaa 🫣
+      </div>
+      <a id="shareWA" class="tombolLanjut" style="margin-top: 60px; display: inline-block; width: fit-content;">💌 Kirim</a>
+    </div>
+
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Initialize Swiper
+  const swiper = new Swiper('.mySwiper', {
+    pagination: { el: '.swiper-pagination', dynamicBullets: true },
+    allowTouchMove: false,
+  });
+
+  // Update range label and progress dynamically
+  const ranges = [
+    {id: 'baik', label: 'val-baik'},
+    {id: 'random', label: 'val-random'},
+    {id: 'gaje', label: 'val-gaje'},
+    {id: 'nakal', label: 'val-nakal'},
+    {id: 'perhatian', label: 'val-perhatian'},
+    {id: 'sayang', label: 'val-sayang'}
+  ];
+
+  ranges.forEach(({id, label}) => {
+    const slider = document.getElementById(id);
+    const labelEl = document.getElementById(label);
+    if (slider && labelEl) {
+      slider.addEventListener('input', () => {
+        labelEl.textContent = slider.value + '%';
+        const percent = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+        slider.style.setProperty('--progress', percent + '%');
+      });
+      // Initialize progress style
+      const initialPercent = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+      slider.style.setProperty('--progress', initialPercent + '%');
+    }
+  });
+
+  // Helper to encode WhatsApp message
+  function encodeMessage(text) {
+    return encodeURIComponent(text).replace(/%20/g, '+');
+  }
+
+  // Prepare WhatsApp message summary
+  function prepareWhatsappMessage() {
+    const baik = document.getElementById('baik').value;
+    const random = document.getElementById('random').value;
+    const gaje = document.getElementById('gaje').value;
+    const nakal = document.getElementById('nakal').value;
+    const perhatian = document.getElementById('perhatian').value;
+    const sayang = document.getElementById('sayang').value;
+    const panggilan = document.getElementById('panggilan').value.trim() || '-';
+    const pesan = document.getElementById('pesan').value.trim() || '-';
+
+    const msg = `
+Baik: ${baik} % 🎭
+Random: ${random} % 🤪
+Gaje: ${gaje} % 😝
+Nakal: ${nakal} % 🤬
+Perhatian: ${perhatian} % 😋
+Sayang: ${sayang} % 😍
+Panggilan buat kamu: ${panggilan}
+Pesan buat aku: ${pesan}
+    `;
+    return encodeMessage(msg);
+  }
+
+  document.getElementById('shareWA').addEventListener('click', () => {
+    Swal.fire({
+      title: 'Kirim jawabannya ke WhatsApp aku ya! 😆',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Kirim',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const phone = ''; // Isi dengan nomor WhatsApp penerima, contoh: '6281234567890'
+        const message = prepareWhatsappMessage();
+        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
+        window.open(url, '_blank');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
